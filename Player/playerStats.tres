@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="playerStats" load_steps=2 format=3 uid="uid://dxdqmai6gnfm4"]
+
+[ext_resource type="Script" path="res://Player/Scripts/player_stats.gd" id="1_is05k"]
+
+[resource]
+script = ExtResource("1_is05k")
+health = 100
+oxygen = 200
+ore = 0
+money = 0
+signalMachineActive = false
+character_items = Array[int]([])

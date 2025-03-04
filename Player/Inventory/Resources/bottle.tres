@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dp4un0euj811p"]
+
+[ext_resource type="Script" path="res://Player/Inventory/Scripts/ItemData.gd" id="1_l7l3q"]
+[ext_resource type="Texture2D" uid="uid://b8q7hfsd73y8q" path="res://Player/Inventory/InvAssets/inventory/bootle1.png" id="2_t02kl"]
+
+[resource]
+script = ExtResource("1_l7l3q")
+name = "Bottle"
+description = "A Little Bottle"
+stackable = true
+texture = ExtResource("2_t02kl")

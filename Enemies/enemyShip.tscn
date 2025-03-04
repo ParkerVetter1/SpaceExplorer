@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbt35mjf18ya"]
+
+[ext_resource type="Script" path="res://Enemies/clickOnNavMeshScript.gd" id="1_8m120"]
+[ext_resource type="Script" path="res://Enemies/enemyShipControl.gd" id="1_qduvx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_py6fc"]
+size = Vector2(88, 39)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xyggt"]
+vertices = PackedVector2Array(489.406, 204.852, 168.648, 200.148, 175.352, 96.25, 458.289, 103.781, 494.023, 94.3672, 460.773, -6.88281, 499.813, 26, 524.406, -6.11719, 522.563, 26)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5), PackedInt32Array(6, 5, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(166, 86, 448.526, 93.5229, 451, -17, 535, -16, 532, 36, 509, 36, 504, 95, 499, 215, 158, 210)])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmysx"]
+
+[node name="EnemyShip" type="Node2D"]
+script = ExtResource("1_8m120")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+script = ExtResource("1_qduvx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(535, 46, 533, 255, 122, 251, 128, 55, 393, 47, 397, -60, 447, -59, 536, -61, 536, -20, 449, -18, 447, 48, 447, 96, 166, 87, 157, 210, 322, 209, 499, 215, 505, 43)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(575, 65)
+shape = SubResource("RectangleShape2D_py6fc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(575, 236)
+shape = SubResource("RectangleShape2D_py6fc")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="RigidBody2D"]
+navigation_polygon = SubResource("NavigationPolygon_xyggt")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="RigidBody2D"]
+position = Vector2(195, 119)
+motion_mode = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="RigidBody2D/CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_bmysx")

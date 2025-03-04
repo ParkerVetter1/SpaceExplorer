@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://chn4jdxfkpifb"]
+
+[ext_resource type="Texture2D" uid="uid://cj8ucwrpri750" path="res://icon.svg" id="1_kwhyx"]
+
+[node name="Marker" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_kwhyx")
+expand_mode = 1

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dng87uc38bk8y"]
+
+[ext_resource type="PackedScene" uid="uid://csqvikhx1y321" path="res://Objects/Doors/double_doors.tscn" id="1_iw07x"]
+[ext_resource type="PackedScene" uid="uid://drqh726dfqdq2" path="res://Objects/Doors/single_door.tscn" id="2_f45sl"]
+[ext_resource type="PackedScene" uid="uid://fscw583q2txi" path="res://Objects/Trader/trader.tscn" id="3_g0mgv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsolv"]
+size = Vector2(33, 63)
+
+[node name="Astroid_Base" type="Node2D"]
+
+[node name="Astroid_Base_Hull" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Astroid_Base_Hull"]
+position = Vector2(80, 0)
+polygon = PackedVector2Array(-80, 1, 1073, 0, 1073, 177, 1349, 212, 1346, 300, 1071, 293, 1019, 293, 1016.78, 74.2493, -11, 68, -4, 190, 823, 190, 816, 261, 156, 260, 163, 403, 134, 403, 130, 259, -2, 254, -3, 451, 775, 446, 773, 492, -5, 493, -18, 592, 1007, 587, 1018, 391, 1071, 384, 1350, 387, 1343, 507, 1071, 547, 1070, 588, 1073, 649, -17, 650, -81, 648, -83, 80)
+
+[node name="Player_Bed" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Bed"]
+position = Vector2(98.5, 289.5)
+shape = SubResource("RectangleShape2D_tsolv")
+
+[node name="Ore_Deposit" type="StaticBody2D" parent="."]
+position = Vector2(80, 129)
+scale = Vector2(1, 1.92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ore_Deposit"]
+shape = SubResource("RectangleShape2D_tsolv")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Double_Doors" parent="Doors" instance=ExtResource("1_iw07x")]
+position = Vector2(1136, 347)
+
+[node name="Double_Doors2" parent="Doors" instance=ExtResource("1_iw07x")]
+position = Vector2(1402, 356)
+
+[node name="Single_Door" parent="Doors" instance=ExtResource("2_f45sl")]
+position = Vector2(227, 450)
+scale = Vector2(0.579832, 1.12)
+
+[node name="Trader" parent="." instance=ExtResource("3_g0mgv")]
+position = Vector2(227, 541)

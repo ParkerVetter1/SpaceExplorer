@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://drqh726dfqdq2"]
+
+[ext_resource type="Script" path="res://Objects/Doors/double_doors.gd" id="1_t83fw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_416ur"]
+size = Vector2(50, 100)
+
+[sub_resource type="Animation" id="Animation_5m7eo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -51)]
+}
+
+[sub_resource type="Animation" id="Animation_l0ru5"]
+resource_name = "doubleDoorSlide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -51), Vector2(0, -90)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78vel"]
+_data = {
+"RESET": SubResource("Animation_5m7eo"),
+"doubleDoorSlide": SubResource("Animation_l0ru5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qyjw"]
+size = Vector2(113, 56)
+
+[node name="Single_Door" type="AnimatableBody2D"]
+script = ExtResource("1_t83fw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -51)
+shape = SubResource("RectangleShape2D_416ur")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_78vel")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -28)
+shape = SubResource("RectangleShape2D_2qyjw")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

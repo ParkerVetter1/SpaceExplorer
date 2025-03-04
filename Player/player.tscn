@@ -1,0 +1,176 @@
+[gd_scene load_steps=12 format=3 uid="uid://bl1c7bhosqec1"]
+
+[ext_resource type="Script" path="res://Player/Scripts/playerMovement.gd" id="1_av7t3"]
+[ext_resource type="Resource" uid="uid://dxdqmai6gnfm4" path="res://Player/playerStats.tres" id="2_s5pjk"]
+[ext_resource type="Resource" uid="uid://bexg4yjvf18p1" path="res://Resources/locations.tres" id="3_4eruo"]
+[ext_resource type="Script" path="res://Player/Scripts/playerSwing.gd" id="3_4f8o0"]
+[ext_resource type="Script" path="res://Util/Managers/MarkerManager.gd" id="4_5danl"]
+[ext_resource type="PackedScene" uid="uid://bvvy0pktvud8e" path="res://Player/Inventory/Scenes/inventory.tscn" id="4_ubbo7"]
+[ext_resource type="Resource" uid="uid://ie8qmkme2k84" path="res://Player/Inventory/Resources/inventory_data.tres" id="4_wv5vx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3u3f"]
+radius = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_rgeut"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_71krm"]
+font_size = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc00o"]
+size = Vector2(56, 20)
+
+[node name="Player" type="Node2D"]
+
+[node name="Player_Bottom" type="CharacterBody2D" parent="."]
+collision_layer = 17
+collision_mask = 17
+motion_mode = 1
+script = ExtResource("1_av7t3")
+stats = ExtResource("2_s5pjk")
+Locations = ExtResource("3_4eruo")
+inv = ExtResource("4_wv5vx")
+friction = 0.2
+
+[node name="Body" type="CollisionShape2D" parent="Player_Bottom"]
+shape = SubResource("CircleShape2D_p3u3f")
+
+[node name="CanvasLayer-relativeToPlayer" type="CanvasLayer" parent="Player_Bottom"]
+
+[node name="FullScreenWidth" type="Control" parent="Player_Bottom/CanvasLayer-relativeToPlayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.761
+anchor_top = 0.036
+anchor_right = 0.986
+anchor_bottom = 0.282
+offset_left = -0.0400391
+offset_top = 0.039999
+offset_right = -65.04
+offset_bottom = -28.52
+scale = Vector2(1.8465, 1.47243)
+
+[node name="OreContainer" type="Control" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth/Panel"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.367
+offset_bottom = -0.0200005
+
+[node name="OreLabel" type="Label" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth/Panel/OreContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.185
+anchor_right = 0.818
+anchor_bottom = 0.731
+offset_left = 0.0332596
+offset_top = 0.00489616
+offset_right = -0.0257416
+offset_bottom = -0.00710487
+grow_horizontal = 0
+text = "Ore:"
+label_settings = SubResource("LabelSettings_rgeut")
+
+[node name="Ore" type="Label" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth/Panel/OreContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.658
+anchor_top = 0.182
+anchor_right = 0.986
+anchor_bottom = 0.731
+offset_left = 0.0179977
+offset_top = -0.00400019
+offset_right = 0.105995
+offset_bottom = -0.0820007
+grow_horizontal = 0
+text = "10"
+label_settings = SubResource("LabelSettings_71krm")
+horizontal_alignment = 2
+
+[node name="OreContainer2" type="Control" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth/Panel"]
+layout_mode = 1
+anchor_top = 0.396
+anchor_right = 1.0
+anchor_bottom = 0.763
+offset_top = 0.0102291
+offset_bottom = -0.00976563
+
+[node name="MoneyLabel" type="Label" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth/Panel/OreContainer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.185
+anchor_right = 0.818
+anchor_bottom = 0.731
+offset_left = 0.0332596
+offset_top = 0.00489616
+offset_right = -0.0257416
+offset_bottom = -0.00710487
+grow_horizontal = 0
+text = "Money:"
+label_settings = SubResource("LabelSettings_rgeut")
+
+[node name="Money" type="Label" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth/Panel/OreContainer2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.658
+anchor_top = 0.182
+anchor_right = 0.986
+anchor_bottom = 0.731
+offset_left = 0.0179977
+offset_top = -0.00400019
+offset_right = 0.105995
+offset_bottom = -0.0820007
+grow_horizontal = 0
+text = "10"
+label_settings = SubResource("LabelSettings_71krm")
+horizontal_alignment = 2
+
+[node name="Inventory" parent="Player_Bottom/CanvasLayer-relativeToPlayer/FullScreenWidth" instance=ExtResource("4_ubbo7")]
+layout_mode = 1
+anchor_left = 0.072
+anchor_top = 0.089
+anchor_right = 0.725
+anchor_bottom = 0.869
+offset_left = -0.0800018
+offset_right = 0.0
+offset_bottom = 0.160004
+
+[node name="MarkerMan" type="Control" parent="Player_Bottom/CanvasLayer-relativeToPlayer"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("4_5danl")
+Locations = ExtResource("3_4eruo")
+player = ExtResource("2_s5pjk")
+
+[node name="Camera2D" type="Camera2D" parent="Player_Bottom"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Player_Top" type="Node2D" parent="."]
+script = ExtResource("3_4f8o0")
+stats = ExtResource("2_s5pjk")
+
+[node name="SwingArea" type="Area2D" parent="Player_Top"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Top/SwingArea"]
+position = Vector2(30, 0)
+rotation = 1.55959
+shape = SubResource("RectangleShape2D_qc00o")
+
+[connection signal="body_entered" from="Player_Top/SwingArea" to="Player_Top" method="_on_swing_area_body_entered"]
+[connection signal="body_exited" from="Player_Top/SwingArea" to="Player_Top" method="_on_swing_area_body_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfol0sn6jh0gc"]
+
+[ext_resource type="Script" path="res://Util/Managers/input_manager.gd" id="1_trtaa"]
+[ext_resource type="PackedScene" uid="uid://bl1c7bhosqec1" path="res://Player/player.tscn" id="1_vbyrr"]
+[ext_resource type="PackedScene" uid="uid://dng87uc38bk8y" path="res://Objects/Astroid_Base/astroid_base.tscn" id="2_32vk3"]
+[ext_resource type="PackedScene" uid="uid://c5k51vgeh6jhh" path="res://Objects/Astroids/astroid.tscn" id="4_ea1yh"]
+[ext_resource type="PackedScene" uid="uid://b5kiuf68jlphc" path="res://Player/Inventory/InvAssets/Items/bottle.tscn" id="5_p0spg"]
+
+[node name="test_world_scene" type="Node2D"]
+
+[node name="InputMan" type="Node" parent="."]
+script = ExtResource("1_trtaa")
+
+[node name="Astroid_Base" parent="." instance=ExtResource("2_32vk3")]
+
+[node name="Astroid" parent="." instance=ExtResource("4_ea1yh")]
+position = Vector2(1988, 204)
+
+[node name="EnemySpawnMan" type="Node" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_vbyrr")]
+position = Vector2(515, 344)
+
+[node name="Bottle" parent="." instance=ExtResource("5_p0spg")]
+position = Vector2(967, 339)

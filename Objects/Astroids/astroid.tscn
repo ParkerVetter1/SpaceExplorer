@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5k51vgeh6jhh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r2dm0"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yj73r"]
+radius = 149.003
+
+[node name="Astroid" type="Node2D"]
+
+[node name="Astroid" type="RigidBody2D" parent="."]
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_r2dm0")
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Astroid"]
+shape = SubResource("CircleShape2D_yj73r")
